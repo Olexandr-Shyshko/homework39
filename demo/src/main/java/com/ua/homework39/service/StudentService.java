@@ -1,24 +1,35 @@
 package com.ua.homework39.service;
 
+import com.ua.homework39.dao.StudentRepositoryMySQL;
 import com.ua.homework39.domain.Student;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class StudentService {
 
+   private StudentRepositoryMySQL studentRepositoryMySQL = new StudentRepositoryMySQL();
+
     public List<Student> findAllStudents() {
-        return List.of(new Student(1, "Ivan", 4, "UDF-05"),
-                new Student(2, "Mariya", 1, "FM-03"));
+        return studentRepositoryMySQL.findAllStudents();
     }
 
     public Optional<Student> findStudentById(int id) {
-        return Optional.of(new Student(4, "Lesya", 2, "IT-4"));
+        return Optional.of(studentRepositoryMySQL.findStudentById(id));
     }
 
-    public void printStudent (Student st){
-        System.out.println(st);
+    public void saveStudent(Student st) {
+        studentRepositoryMySQL.saveStudent(st);
+    }
+    public void updateStudent(Student st) {
+        studentRepositoryMySQL.updateStudent(st);
+    }
+
+    public void deleteStudent(int id) {
+        studentRepositoryMySQL.deleteStudentById(id);
     }
 }

@@ -23,8 +23,19 @@ public class StudentController {
         return studentService.findStudentById(id);
     }
 
-    @PostMapping("/printStudent")
-    public void printStudent (@RequestBody Student st){
-        studentService.printStudent(st);
+
+    @PostMapping("/saveStudent")
+    public void saveStudent (@RequestBody Student st){
+        studentService.saveStudent(st);
+    }
+
+    @DeleteMapping("/deleteStudent/{id}")
+    public void deleteStudent (@PathVariable int id){
+        studentService.deleteStudent(id);
+    }
+
+    @PutMapping("/updateStudent")
+    public void updateStudent (@RequestBody Student st){
+        studentService.updateStudent(st);
     }
 }
